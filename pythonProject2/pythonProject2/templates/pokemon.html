@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pokemon_details.name }} Details</title>
+
+    <style>
+        body {
+            background-color: #f0f0f0; /* Set your desired background color */
+            font-family: Arial, sans-serif; /* Use a common font-family */
+        }
+
+        h1 {
+            font-size: 45px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        img {
+            max-width: 100%; /* Ensure the image doesn't exceed its container */
+            height: auto; /* Maintain the image's aspect ratio */
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px; /* Set a font size for paragraphs */
+        }
+
+        a {
+            display: block; /* Make the link a block element for better spacing */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ pokemon_details.name }} Details</h1>
+    <img src="{{ pokemon_details.sprites.front_default }}" alt="{{ pokemon_details.name }} Image">
+    <p>Height: {{ pokemon_details.height }}</p>
+    <p>Weight: {{ pokemon_details.weight }}</p>
+    <p>Base Experience: {{ pokemon_details.base_experience }}</p>
+
+    <a href="{{ url_for('home') }}">Back to Pokemon List</a>
+</body>
+</html>
+

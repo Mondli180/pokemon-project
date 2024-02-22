@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Pokemon Results</title>
+
+    <style>
+        body {
+            background-color: #f0f0f0; /* Set your desired background color */
+            font-family: Arial, sans-serif; /* Use a common font-family */
+        }
+
+        h1 {
+            font-size: 45px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        p {
+            font-size: 18px; /* Set a font size for paragraphs */
+        }
+
+        a {
+            display: block; /* Make the link a block element for better spacing */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filtered Pokemon Results</h1>
+
+    {% if success %}
+        <p>Filtered Pokemon:</p>
+        <ul>
+            {% for pokemon in filtered_pokemon %}
+                <li>{{ pokemon['name'] }} - Height: {{ pokemon['height'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}">Back to Pokemon List</a>
+</body>
+</html>

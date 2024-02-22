@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Comparison Result</title>
+
+    <style>
+        body {
+            background-color: #f0f0f0; /* Set your desired background color */
+            font-family: Arial, sans-serif; /* Use a common font-family */
+        }
+
+        h1 {
+            font-size: 45px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px; /* Add some margin for spacing */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            font-size: 18px; /* Set a font size for paragraphs */
+        }
+
+        a {
+            display: block; /* Make the link a block element for better spacing */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comparison Result</h1>
+    {% if differences %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>{{ pokemon1_name }}</th>
+                    <th>{{ pokemon2_name }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for difference in differences %}
+                    <tr>
+                        <td>{{ difference.attribute }}</td>
+                        <td>{{ difference.pokemon1_name }} - {{ difference.pokemon1_value }}</td>
+                        <td>{{ difference.pokemon2_name }} - {{ difference.pokemon2_value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No differences found.</p>
+    {% endif %}
+    <a href="{{ url_for('home') }}">Back to Pokemon List</a>
+</body>
+</html>

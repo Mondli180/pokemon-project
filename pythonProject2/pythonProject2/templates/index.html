@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeAPI Interface</title>
+
+    <style>
+        body {
+            background-color: #f0f0f0; /* Set your desired background color */
+            font-family: Arial, sans-serif; /* Use a common font-family */
+        }
+
+        h1, h2 {
+            font-size: 45px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        form {
+            display: inline-block; /* Display the forms in a line */
+            margin-right: 20px; /* Add some margin for spacing */
+        }
+
+        /* Style the label for better alignment */
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style the select and input fields */
+        select, input {
+            width: 150px; /* Set a fixed width for consistency */
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 45px; font-weight: bold; font-style: italic;">Pokemon List</h1>
+    <form action="{{ url_for('view_pokemon_details') }}" method="get">
+        <label for="selected_pokemon">Select a Pokemon:</label>
+        <select name="selected_pokemon" id="selected_pokemon">
+            {% for pokemon in pokemon_list %}
+                <option value="{{ pokemon['name'] }}">{{ pokemon['name'] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Details</button>
+    </form>
+
+    <h2 style="font-size: 45px; font-weight: bold; font-style: italic;">Comparison</h2>
+    <form action="{{ url_for('compare') }}" method="post">
+        <label for="pokemon1">Select Pokemon 1:</label>
+        <select name="pokemon1" id="pokemon1">
+            {% for pokemon in pokemon_list %}
+                <option value="{{ pokemon['name'] }}">{{ pokemon['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="pokemon2">Select Pokemon 2:</label>
+        <select name="pokemon2" id="pokemon2">
+            {% for pokemon in pokemon_list %}
+                <option value="{{ pokemon['name'] }}">{{ pokemon['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Compare</button>
+    </form>
+
+    <h2 style="font-size: 45px; font-weight: bold; font-style: italic;">Filter</h2>
+    <form action="{{ url_for('filter_pokemon') }}" method="post">
+        <label for="prefix">Prefix:</label>
+        <input type="text" name="prefix" required><br>
+        <label for="min_height">Min Height:</label>
+        <input type="number" name="min_height" required><br>
+        <label for="max_height">Max Height:</label>
+        <input type="number" name="max_height" required><br>
+        <button type="submit">Filter</button>
+    </form>
+</body>
+</html>
